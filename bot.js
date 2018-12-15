@@ -73,6 +73,42 @@ client.on('message', async msg =>{
         }
     };
 });
+
+client.on('message', message =>{
+
+   
+if(!true) return;
+    if(message.content.split(' ')[0] == (prefix+'clear')){
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **ليس لديك صلاحيات**');
+    var lmt = message.content.split(' ')[1]
+    ,  hang = 0
+    ,  max  = 0;
+    
+    if(!lmt) lmt = 100;
+    if(typeof lmt !== 'number') return;
+    if(lmt > 50){
+        for(;lmt > 50;){
+        lmt--;
+        hang++;
+        }
+        }
+     message.channel.fetchMessages({limite:lmt}).then(msgs=>{
+     msgs.channel.bulkDelete(msgs);
+     });
+     if(hang > 50){
+         hang = 50;
+     }
+        message.channel.fetchMessages({limite:hang}).then(msgs=>{
+        message.channel.bulkDelete(msgs);
+     });
+     
+  max= hang+lmt;
+    message.channel.send(`تم مسح الرسائل بنجاح `).then(m => m.delete(5000));
+       
+    }
+});
+
+
 /////////////////////////
 ////////////////////////
 //////////////////////
