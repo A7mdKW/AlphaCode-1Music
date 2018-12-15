@@ -74,6 +74,17 @@ client.on('message', async msg =>{
     };
 });
 
+client.on('message', message => {
+    if(message.content === '=stop'){
+        message.reply('**Stopped :white_check_mark: **');
+    }
+});
+
+client.on('message', message => {
+    if(message.content === '69'){
+        message.reply('**He is a big nigga!! **');
+    }
+});
 client.on('message', message =>{
 
    
